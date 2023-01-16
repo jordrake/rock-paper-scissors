@@ -31,3 +31,15 @@
   height: 1.2em;
   
 }
+
+[data-type="rock"]::after {
+  content: '🪨';
+}
+
+[data-type="paper"]::after {
+  content: '📄';
+}
+
+[data-type="scissors"]::after {
+  content: '✂️';
+}

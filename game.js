@@ -16,11 +16,3 @@ export function fight(attacker, target) {
 
   return LOSE;
 }
-
-export function config() {
-  return {
-    algorithm: document.getElementById("algorithm").value,
-    tickRate: parseInt(document.getElementById("timer").value),
-    duplicate: document.getElementById("duplicate").checked,
-  };
-}

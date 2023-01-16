@@ -1,13 +1,14 @@
 import { WIN, EMPTY } from "./constants.js";
-import { minMax } from "./utils.js";
-import { config, fight } from "./game.js";
+import { minMax, nAritySet } from "./utils.js";
+import { fight } from "./game.js";
+import { config } from "./ui.js";
 
 export function gameTurnNearest(grid) {
   const { duplicate } = config();
-  let seen = {};
+  const visitedSet = nAritySet();
 
   grid.each((x, y, me) => {
-    if (me === EMPTY || seen[`${x},${y}`]) {
+    if (me === EMPTY || visitedSet.has(x, y)) {
       return;
     }
 
@@ -43,14 +44,11 @@ export function gameTurnNearest(grid) {
 
       if (fight(me, target) === WIN) {
         grid.place(targetX, targetY, me);
-        seen[`${targetX},${targetY}`] = true;
+        visitedSet.add(targetX, targetY);
 
-        if (!duplicate) {
+        if (!duplicate || target === EMPTY) {
           grid.place(x, y, EMPTY);
         }
-      } else {
-        // Don't move
-        seen[`${x},${y}`] = true;
       }
     }
   });

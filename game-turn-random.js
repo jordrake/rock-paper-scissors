@@ -1,6 +1,7 @@
 import { WIN, EMPTY } from "./constants.js";
-import { sample } from "./utils.js";
-import { config, fight } from "./game.js";
+import { nAritySet, sample } from "./utils.js";
+import { fight } from "./game.js";
+import { config } from "./ui.js";
 
 const moves = [
   [0, 1], // north
@@ -11,10 +12,10 @@ const moves = [
 
 export function gameTurnRandom(grid) {
   const { duplicate } = config();
-  let seen = {};
+  const visitedSet = nAritySet();
 
   grid.each((x, y, me) => {
-    if (me === EMPTY || seen[`${x},${y}`]) {
+    if (me === EMPTY || visitedSet.has(x, y)) {
       return;
     }
 
@@ -27,7 +28,7 @@ export function gameTurnRandom(grid) {
 
     if (fight(me, target) === WIN) {
       grid.place(targetX, targetY, me);
-      seen[`${targetX},${targetY}`] = true;
+      visitedSet.add(x, y);
 
       if (!duplicate || target === EMPTY) {
         grid.place(x, y, EMPTY);
