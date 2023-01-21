@@ -25,29 +25,25 @@ export class Grid {
     this.cells[y][x] = value;
   }
 
-  map(callback) {
-    for (let y = 0; y < this.cells.length; y++) {
-      for (let x = 0; x < this.cells[y].length; x++) {
-        this.cells[y][x] = callback(x, y, this.cells[y][x]);
-      }
-    }
-  }
-
-  each(callback) {
-    for (let y = 0; y < this.cells.length; y++) {
-      for (let x = 0; x < this.cells[y].length; x++) {
-        callback(x, y, this.cells[y][x]);
-      }
-    }
-  }
-
   eachRow(rowCallback) {
     for (let y = 0; y < this.cells.length; y++) {
       const cellCallback = rowCallback(y);
 
       for (let x = 0; x < this.cells[y].length; x++) {
-        cellCallback(x, this.cells[y][x]);
+        cellCallback(x, this.at(x, y));
       }
     }
+  }
+
+  each(callback) {
+    this.eachRow((y) => (x) => {
+      callback(x, y, this.at(x, y));
+    });
+  }
+
+  map(callback) {
+    this.each((x, y, type) => {
+      this.place(x, y, callback(x, y, type))
+    });
   }
 }
