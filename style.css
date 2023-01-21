@@ -32,18 +32,18 @@
   border: 1px dotted lightgrey;
 
   font-size: 20px;
-  width: calc(1em * 1.1);
-  height: calc(1em * 1.1);
+  width: calc(1em * 1.3);
+  height: calc(1em * 1.3);
 }
 
-[data-type="rock"]::after {
-  content: "🪨";
+[data-type="rock"] {
+  background-image: url('/rock.svg');
 }
 
-[data-type="paper"]::after {
-  content: "📄";
+[data-type="paper"] {
+  background-image: url('/paper.svg');
 }
 
-[data-type="scissors"]::after {
-  content: "✂️";
+[data-type="scissors"] {
+  background-image: url('/scissors.svg');
 }
