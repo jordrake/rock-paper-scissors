@@ -6,6 +6,7 @@ import { ROCK, PAPER, SCISSORS, EMPTY } from "./constants.js";
 import { config, createGridUi, updateGridUiWithGame } from "./ui.js";
 
 let grid;
+let turnCount = 0;
 
 function fillGrid(grid) {
   const types = [EMPTY, ROCK, PAPER, SCISSORS];
@@ -18,7 +19,7 @@ function next() {
   const gridTurn = algorithm === "random" ? gameTurnRandom : gameTurnNearest;
 
   gridTurn(grid);
-  updateGridUiWithGame(grid);
+  updateGridUiWithGame(grid, ++turnCount);
 }
 
 let timeoutHandle;
@@ -42,12 +43,14 @@ function stop() {
 function reset() {
   const { gridSize } = config();
 
+  turnCount = 0;
+
   stop();
 
   grid = new Grid(gridSize.rows, gridSize.columns, EMPTY);
   createGridUi(grid);
   fillGrid(grid);
-  updateGridUiWithGame(grid);
+  updateGridUiWithGame(grid, turnCount);
 }
 
 document.getElementById("start").addEventListener("click", start);

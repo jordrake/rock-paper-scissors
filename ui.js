@@ -12,7 +12,7 @@ export function config() {
   };
 }
 
-export function updateGridUiWithGame(grid) {
+export function updateGridUiWithGame(grid, turnCount) {
   const counts = {
     [ROCK]: 0,
     [PAPER]: 0,
@@ -25,7 +25,7 @@ export function updateGridUiWithGame(grid) {
     gridEl.childNodes[y].childNodes[x].dataset.type = type;
     counts[type]++;
   });
-  
+
   document.getElementById(
     "rock-count"
   ).innerText = counts[ROCK];
@@ -35,6 +35,9 @@ export function updateGridUiWithGame(grid) {
   document.getElementById(
     "scissors-count"
   ).innerText = counts[SCISSORS];
+  document.getElementById(
+    "turn-count"
+  ).innerText = turnCount;
 }
 
 export function createGridUi(grid) {
