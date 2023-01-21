@@ -3,6 +3,19 @@ import { minMax, nAritySet } from "./utils.js";
 import { fight } from "./game.js";
 import { config } from "./ui.js";
 
+function distanceBetween(x, y, targetX, targetY) {
+  return Math.abs(x - targetX) + Math.abs(y - targetY);
+}
+
+function oneSpaceTowards(x, y, targetX, targetY) {
+  const xDiff = targetX - x;
+  const yDiff = targetY - y;
+
+  return Math.abs(yDiff) > Math.abs(xDiff)
+      ? [0, minMax(-1, 1, yDiff)]
+      : [minMax(-1, 1, xDiff), 0];
+}
+
 export function gameTurnNearest(grid) {
   const { duplicate } = config();
   const visitedSet = nAritySet();
@@ -16,7 +29,7 @@ export function gameTurnNearest(grid) {
     let distance;
     grid.each((targetX, targetY, them) => {
       if (them !== EMPTY && fight(me, them) === WIN) {
-        const newDistance = Math.abs(x - targetX) + Math.abs(y - targetY);
+        const newDistance = distanceBetween(x, y, targetX, targetY);
         if (!nearest) {
           nearest = [targetX, targetY];
           distance = newDistance;
@@ -31,15 +44,9 @@ export function gameTurnNearest(grid) {
 
     if (nearest) {
       const [nearestX, nearestY] = nearest;
-      const xDiff = nearestX - x;
-      const yDiff = nearestY - y;
+      const move = oneSpaceTowards(x, y, nearestX, nearestY);
 
-      const moveTowards =
-        Math.abs(yDiff) > Math.abs(xDiff)
-          ? [0, minMax(-1, 1, yDiff)]
-          : [minMax(-1, 1, xDiff), 0];
-
-      const [targetX, targetY] = [x + moveTowards[0], y + moveTowards[1]];
+      const [targetX, targetY] = [x + move[0], y + move[1]];
       const target = grid.at(targetX, targetY);
 
       if (fight(me, target) === WIN) {
