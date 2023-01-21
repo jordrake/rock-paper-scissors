@@ -5,17 +5,13 @@ import { gameTurnRandom } from "./game-turn-random.js";
 import { ROCK, PAPER, SCISSORS, EMPTY } from "./constants.js";
 import { config, createGridUi, updateGridUiWithGame } from "./ui.js";
 
+let grid;
+
 function fillGrid(grid) {
   const types = [EMPTY, ROCK, PAPER, SCISSORS];
 
   grid.map(() => sample(types));
 }
-
-let grid = new Grid(30, 30, EMPTY);
-fillGrid(grid);
-
-createGridUi(grid);
-updateGridUiWithGame(grid);
 
 function next() {
   const { algorithm } = config();
@@ -44,8 +40,12 @@ function stop() {
 }
 
 function reset() {
+  const { gridSize } = config();
+
   stop();
-  grid = new Grid(30, 30, EMPTY);
+
+  grid = new Grid(gridSize.rows, gridSize.columns, EMPTY);
+  createGridUi(grid);
   fillGrid(grid);
   updateGridUiWithGame(grid);
 }
@@ -54,3 +54,5 @@ document.getElementById("start").addEventListener("click", start);
 document.getElementById("stop").addEventListener("click", stop);
 document.getElementById("reset").addEventListener("click", reset);
 document.getElementById("next").addEventListener("click", next);
+
+reset();

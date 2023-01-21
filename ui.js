@@ -5,6 +5,10 @@ export function config() {
     algorithm: document.getElementById("algorithm").value,
     tickRate: parseInt(document.getElementById("timer").value),
     duplicate: document.getElementById("duplicate").checked,
+    gridSize: {
+      rows: document.getElementById("grid-rows").value,
+      columns: document.getElementById("grid-columns").value,
+    },
   };
 }
 

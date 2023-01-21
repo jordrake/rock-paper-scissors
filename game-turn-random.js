@@ -28,7 +28,7 @@ export function gameTurnRandom(grid) {
 
     if (fight(me, target) === WIN) {
       grid.place(targetX, targetY, me);
-      visitedSet.add(x, y);
+      visitedSet.add(targetX, targetY);
 
       if (!duplicate || target === EMPTY) {
         grid.place(x, y, EMPTY);
