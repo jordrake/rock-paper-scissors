@@ -1,4 +1,4 @@
-import { ROCK, PAPER, SCISSORS, EMPTY, emojis } from "./constants.js";
+import { ROCK, PAPER, SCISSORS, EMPTY } from "./constants.js";
 
 export function config() {
   return {
@@ -31,13 +31,13 @@ export function updateGridUiWithGame(grid) {
 
   document.getElementById(
     "rock-count"
-  ).innerText = `${emojis[ROCK]}: ${counts[ROCK]}`;
+  ).innerText = counts[ROCK];
   document.getElementById(
     "paper-count"
-  ).innerText = `${emojis[PAPER]}: ${counts[PAPER]}`;
+  ).innerText = counts[PAPER];
   document.getElementById(
     "scissors-count"
-  ).innerText = `${emojis[SCISSORS]}: ${counts[SCISSORS]}`;
+  ).innerText = counts[SCISSORS];
 }
 
 export function createGridUi(grid) {
