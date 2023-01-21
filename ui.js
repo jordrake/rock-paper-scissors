@@ -19,16 +19,13 @@ export function updateGridUiWithGame(grid) {
     [SCISSORS]: 0,
   };
 
-  const cells = grid.getCells();
   const gridEl = document.getElementById("rock-paper-scissors");
-  for (let y = 0; y < cells.length; y++) {
-    for (let x = 0; x < cells[y].length; x++) {
-      const type = cells[y][x];
-      gridEl.childNodes[y].childNodes[x].dataset.type = type;
-      counts[type]++;
-    }
-  }
 
+  grid.each((x, y, type) => {
+    gridEl.childNodes[y].childNodes[x].dataset.type = type;
+    counts[type]++;
+  });
+  
   document.getElementById(
     "rock-count"
   ).innerText = counts[ROCK];
@@ -46,22 +43,19 @@ export function createGridUi(grid) {
 
   const gridFrag = document.createDocumentFragment();
 
-  const cells = grid.getCells();
-
-  for (let y = 0; y < cells.length; y++) {
-    const row = cells[y];
+  grid.eachRow((y) =>{
     const rowEl = document.createElement("div");
     rowEl.className = "row";
+    gridFrag.appendChild(rowEl);
 
-    for (let x = 0; x < row.length; x++) {
+    return (x) => {
       const cellEl = document.createElement("div");
       cellEl.className = `cell`;
       cellEl.dataset.y = y;
       cellEl.dataset.x = x;
       rowEl.appendChild(cellEl);
     }
-    gridFrag.appendChild(rowEl);
-  }
+  });
 
   gridEl.appendChild(gridFrag);
 }

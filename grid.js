@@ -41,7 +41,13 @@ export class Grid {
     }
   }
 
-  getCells() {
-    return this.cells;
+  eachRow(rowCallback) {
+    for (let y = 0; y < this.cells.length; y++) {
+      const cellCallback = rowCallback(y);
+
+      for (let x = 0; x < this.cells[y].length; x++) {
+        cellCallback(x, this.cells[y][x]);
+      }
+    }
   }
 }
