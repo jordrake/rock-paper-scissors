@@ -38,15 +38,15 @@
 }
 
 [data-type="rock"] {
-  background-image: url('/rock.svg');
+  background-image: url('rock.svg');
 }
 
 [data-type="paper"] {
-  background-image: url('/paper.svg');
+  background-image: url('paper.svg');
 }
 
 [data-type="scissors"] {
-  background-image: url('/scissors.svg');
+  background-image: url('scissors.svg');
 }
 
 .counts {
