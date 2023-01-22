@@ -12,8 +12,8 @@ function oneSpaceTowards(x, y, targetX, targetY) {
   const yDiff = targetY - y;
 
   return Math.abs(yDiff) > Math.abs(xDiff)
-      ? [0, minMax(-1, 1, yDiff)]
-      : [minMax(-1, 1, xDiff), 0];
+    ? [0, minMax(-1, 1, yDiff)]
+    : [minMax(-1, 1, xDiff), 0];
 }
 
 export function gameTurnNearest(grid) {

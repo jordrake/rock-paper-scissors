@@ -26,18 +26,10 @@ export function updateGridUiWithGame(grid, turnCount) {
     counts[type]++;
   });
 
-  document.getElementById(
-    "rock-count"
-  ).innerText = counts[ROCK];
-  document.getElementById(
-    "paper-count"
-  ).innerText = counts[PAPER];
-  document.getElementById(
-    "scissors-count"
-  ).innerText = counts[SCISSORS];
-  document.getElementById(
-    "turn-count"
-  ).innerText = turnCount;
+  document.getElementById("rock-count").innerText = counts[ROCK];
+  document.getElementById("paper-count").innerText = counts[PAPER];
+  document.getElementById("scissors-count").innerText = counts[SCISSORS];
+  document.getElementById("turn-count").innerText = turnCount;
 }
 
 export function createGridUi(grid) {
@@ -46,7 +38,7 @@ export function createGridUi(grid) {
 
   const gridFrag = document.createDocumentFragment();
 
-  grid.eachRow((y) =>{
+  grid.eachRow((y) => {
     const rowEl = document.createElement("div");
     rowEl.className = "row";
     gridFrag.appendChild(rowEl);
@@ -57,7 +49,7 @@ export function createGridUi(grid) {
       cellEl.dataset.y = y;
       cellEl.dataset.x = x;
       rowEl.appendChild(cellEl);
-    }
+    };
   });
 
   gridEl.appendChild(gridFrag);
