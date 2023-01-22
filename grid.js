@@ -73,7 +73,7 @@ export class Grid {
       const cellCallback = rowCallback(y);
 
       if (cellCallback) {
-        for (let x = 0; x < this.cells[y].length; x++) {
+        for (let x = 0; x < this.#cells[y].length; x++) {
           cellCallback(x, this.at(x, y));
         }
       }
