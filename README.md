@@ -1,5 +1,7 @@
 # Rock Paper Scissors
 
+Check it out at https://jordrake.github.io/rock-paper-scissors/
+
 ## Description
 
 This is a simulation game of Rock Paper Scissors in a grid format. Each cell can either be a rock, paper, scissors or empty and each turn they move one space in a cardinal direction.
