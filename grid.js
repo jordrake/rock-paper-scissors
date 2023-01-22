@@ -7,6 +7,7 @@ export class Grid {
    * @param {any} defaultValue
    */
   constructor(rows, columns, defaultValue) {
+    const cells = [];
     for (let x = 0; x < rows; x++) {
       const row = [];
       for (let y = 0; y < columns; y++) {
