@@ -1,12 +1,12 @@
-## Rock Paper Scissors
+# Rock Paper Scissors
 
-# Description
+## Description
 
 This is a simulation game of Rock Paper Scissors in a grid format. Each cell can either be a rock, paper, scissors or empty and each turn they move one space in a cardinal direction.
 
 If an object encounters an non-empty cell, they will fight according to the standard rock, paper, scissors rules of engagement (rock > scissors > paper > rock) and the winner occupies the space. Empty cells are a guranteed victory.
 
-# Philosophy
+## Philosophy
 
 My intention is to create several algorithms to determine how each object moves (e.g. randomly, nearest winning fight etc...) as well as other toggles that modify certain mechanics.
 
